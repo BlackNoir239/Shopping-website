@@ -1,0 +1,32 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+    <div class="card mb-3 shadow-sm" style="max-width: 1000px; margin: auto;">
+        <div class="row g-0">
+            <div class="col-md-6 bg-white d-flex align-items-center justify-content-center">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="{{ product.name }}" style="max-height: 400px; padding: 20px;">
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <div class="card-body p-5">
+                    <h5 class="text-muted text-uppercase">{{ product.category.name }}</h5>
+                    <h1 class="card-title display-5">{{ product.name }}</h1>
+                    <h2 class="text-success display-6 my-3">${{ product.price }}</h2>
+                    <p class="card-text lead">{{ product.description }}</p>
+                    
+                    <hr>
+                    
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'checkout' product.pk %}" class="btn btn-success btn-lg">
+                            <i class="fas fa-credit-card"></i> Buy Now
+                        </a>
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+                            Back to Store
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

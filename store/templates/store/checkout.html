@@ -1,0 +1,51 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-lock"></i> Secure Checkout</h4>
+            </div>
+            <div class="card-body p-4">
+                <div class="alert alert-info">
+                    You are purchasing: <strong>{{ product.name }}</strong><br>
+                    Total: <strong>${{ product.price }}</strong>
+                </div>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Name on Card</label>
+                        <input type="text" class="form-control" name="card_name" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Card Number</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                            <input type="text" class="form-control" name="card_number" placeholder="0000 0000 0000 0000" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Expiry Date</label>
+                            <input type="text" class="form-control" placeholder="MM/YY" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">CVV</label>
+                            <input type="text" class="form-control" placeholder="123" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100 btn-lg mt-3">
+                        Confirm Payment ${{ product.price }}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
